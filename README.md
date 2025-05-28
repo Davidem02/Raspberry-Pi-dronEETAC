@@ -389,3 +389,8 @@ Permite sincronizar automáticamente la toma de imágenes con el inicio y fin de
 Este script se encarga de **unir las imágenes tomadas durante el vuelo** en un solo mosaico visual.
 
 Utiliza técnicas de procesamiento de imágenes para combinar múltiples capturas en una vista panorámica del terreno recorrido.
+
+## Resultados
+
+<img src="panorama2.png" alt="Dron montado y operativo (fase inicial)" width="500"/>
+
