@@ -75,3 +75,19 @@ Una vez abierta la aplicación, se selecciona el modelo de Raspberry Pi (en este
 
 <img src="https://github.com/user-attachments/assets/a0273919-176d-4916-b571-3eeaaa23c6c7" alt="Tipo Rasp" width="400"/>
 <img src="https://github.com/user-attachments/assets/4be6af39-739c-4ff0-a5f8-54961269862e" alt="Tipo Sis" width="400"/>
+
+Una vez todo esté listo, se pulsa el botón "Escribir" y comienza el proceso de instalación del sistema operativo en la tarjeta. Cuando finalice, se retira la microSD con seguridad. A continuación, ya podemos proceder a insertar la tarjeta en la Raspberry Pi y realizar la primera configuración.
+
+<img src="https://github.com/user-attachments/assets/d6f6f40c-b32c-4b59-96ce-71f3300c2778" alt="Poner SD" width="400"/>
+
+### 2. Consfiguración de "RasPi OS"
+
+Para poder continuar con la configuración inicial, es necesario conectar la Raspberry Pi a un monitor mediante un cable micro-HDMI a HDMI, un teclado USB, un ratón USB, y por supuesto, a una fuente de alimentación.
+
+Al encender la Raspberry Pi por primera vez, se iniciará un asistente de configuración. En él, seleccionaremos el país, idioma y zona horaria, y crearemos un usuario y contraseña. Es importante anotar estos datos, ya que los necesitaremos más adelante para acceder al sistema o conectarnos remotamente.
+
+Cuando se ofrezca la opción de conectarse a una red Wi-Fi, la saltaremos seleccionando “Skip”, ya que la conexión se configurará más adelante. También se nos pedirá elegir un navegador predeterminado.
+
+Finalmente, la Raspberry Pi intentará actualizarse, pero al no tener internet, fallará. No pasa nada: tras completar estos pasos, el sistema se reiniciará y mostrará la pantalla de inicio.
+
+<img src="https://github.com/user-attachments/assets/38d066fe-6830-4908-be79-8648584714b5" alt="Escritorio" width="400"/>
