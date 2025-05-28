@@ -480,3 +480,6 @@ Para facilitar el _stitching_ de imágenes, se recomienda ajustar el parámetro 
 ##### Tabla de Configuración
 <img src="https://github.com/user-attachments/assets/dc103909-1b06-48cf-a0c6-b26ad4e8ba5d" alt="MP" width="1000"/>
 
+
+
+Gracias ツ
