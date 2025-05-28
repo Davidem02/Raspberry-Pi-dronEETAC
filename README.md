@@ -34,8 +34,8 @@ A continuación se muestra el material **extra** que se ha añadido al dron para
 
 ##### -Cables de telemetría y alimentación: Conectados de la caja al dron
 
-<img src="https://github.com/user-attachments/assets/aa4d092c-e369-4873-82a9-f9cadcd2a1bc" alt="Cables de telemetría y alimentación" width="200"/>
-<img src="https://github.com/user-attachments/assets/c31ecad2-7ae4-4c17-a9e9-915a39595853" alt="Cables de telemetría y alimentación" width="200"/>
+<img src="https://github.com/user-attachments/assets/aa4d092c-e369-4873-82a9-f9cadcd2a1bc" alt="Cables de telemetría" width="200"/>
+<img src="https://github.com/user-attachments/assets/c31ecad2-7ae4-4c17-a9e9-915a39595853" alt="Cables de alimentación" width="200"/>
 
 ##### -Base de metacrilato: Plataforma física para sujetar la Raspberry Pi y sus componentes al dron de forma segura.
 
@@ -52,3 +52,26 @@ A continuación se muestra el material **extra** que se ha añadido al dron para
 ##### -Fuente de alimentación para Raspberry Pi 4: Utilizada durante la configuración de la Raspberry Pi.
 
 <img src="https://github.com/user-attachments/assets/c642dde2-360f-4e9f-80ad-4cb124fff369d" alt="Fuente de alimentación" width="200"/>
+
+## Versión final del dron con los componente añadidos
+
+<img src="https://github.com/user-attachments/assets/fbf150c5-6253-432d-8082-509fbf09e381" alt="Dron montado y operativo (fase final)" width="400"/>
+<img src="https://github.com/user-attachments/assets/ae78d7fb-7f92-4261-8bc8-204cb59eda9e" alt="Dron montado y operativo (fase final)" width="400"/>
+
+## Configuración de la Raspberry Pi
+
+Para poder utilizar la Raspberry Pi a bordo del dron, primero debemos configurarla correctamente con el sistema operativo, acceso remoto y los paquetes necesarios para poder trabajar con la cámara, la telemetría y otros módulos.
+
+A continuación, se detallan los pasos necesarios:
+
+### 1. Instalación del sistema operativo (Raspberry Pi OS)
+
+El sistema operativo se instala en una tarjeta microSD, que luego insertaremos en la Raspberry Pi. Para ello, es necesario conectar la microSD al ordenador mediante un adaptador o lector de tarjetas. A continuación, se debe acceder a la página oficial de Raspberry Pi (https://www.raspberrypi.com/software/) y descargar la herramienta Raspberry Pi Imager, que facilita el proceso de instalación.
+
+<img src="https://github.com/user-attachments/assets/fcf1a1b8-dc7a-446b-9558-396f94dd6b82" alt="Lector tarjetas" width="400"/>
+<img src="https://github.com/user-attachments/assets/cefea9ee-5cfb-47dd-a62c-c1a3cc6e338e" alt="Raspberry Pi Imager" width="400"/>
+
+Una vez abierta la aplicación, se selecciona el modelo de Raspberry Pi (en este caso, la Raspberry Pi 4), el sistema operativo Raspberry Pi OS (64 bits), y finalmente la unidad correspondiente a la microSD conectada. Al continuar, la aplicación preguntará si se desea realizar alguna configuración previa, pero en este momento seleccionamos “No”, ya que todos los ajustes necesarios los haremos manualmente más adelante.
+
+<img src="https://github.com/user-attachments/assets/a0273919-176d-4916-b571-3eeaaa23c6c7" alt="Tipo Rasp" width="400"/>
+<img src="https://github.com/user-attachments/assets/4be6af39-739c-4ff0-a5f8-54961269862e" alt="Tipo Sis" width="400"/>
