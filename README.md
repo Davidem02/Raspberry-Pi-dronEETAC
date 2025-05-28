@@ -273,3 +273,47 @@ Estos pines se deberían llevar a los correspondientes pines de la Raspberry Pi:
 Esto asegura que la Raspberry Pi reciba energía directamente desde la batería, sin necesidad de utilizar un cargador o fuente externa durante el funcionament, siendo esto lo que se necesita para alimetar a la Raspberry durante el vuelo.
 
 > ⚠️ **Asegúrate de conectar correctamente los pines**, ya que una conexión invertida o incorrecta puede dañar la Raspberry Pi de forma irreversible.
+
+## Códigos utilizados
+
+Durante el desarrollo del proyecto se han creado distintos scripts en Python para realizar pruebas y funcionalidades específicas. A continuación, se describen brevemente:
+
+### 1. `provaWebcam.py`
+
+Este script permite probar el funcionamiento de una cámara conectada al sistema, ya sea una webcam integrada o una conectada por USB. Se utiliza para capturar imágenes o visualizar en tiempo real desde la cámara mediante código.
+
+---
+
+### 2. `provaCam.py`
+
+Continuación del script anterior, pero pensado específicamente para trabajar con el **módulo de cámara de la Raspberry Pi**. 
+
+Al ejecutarse, este código:
+- Muestra en una ventana la imagen en directo capturada por la cámara.
+- Guarda automáticamente capturas cada cierto tiempo (este intervalo es configurable).
+
+Es útil para validar el funcionamiento del módulo de cámara y automatizar la toma de imágenes.
+
+---
+
+### 3. `provaVol.py`
+
+Este es el script principal utilizado durante el vuelo de prueba del dron. 
+
+Aunque inicialmente se planeó desarrollar una aplicación para configurar todos los parámetros del vuelo, debido a limitaciones de tiempo y errores inesperados se optó por este script como alternativa funcional.
+
+Este script:
+- Se conecta al autopiloto y recibe **datos de telemetría**.
+- Detecta el **modo de vuelo** del dron.
+- Comienza a capturar fotos automáticamente cuando el modo cambia a `AUTO` (inicio de misión).
+- Deja de capturar cuando el modo cambia a `LAND` (aterrizaje).
+
+Permite sincronizar automáticamente la toma de imágenes con el inicio y fin de la misión.
+
+---
+
+### 4. `stitching.py`
+
+Este script se encarga de **unir las imágenes tomadas durante el vuelo** en un solo mosaico visual.
+
+Utiliza técnicas de procesamiento de imágenes para combinar múltiples capturas en una vista panorámica del terreno recorrido.
