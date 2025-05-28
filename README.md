@@ -253,3 +253,23 @@ Una vez reiniciada, la Raspberry Pi debería tener habilitada la comunicación U
 Sin embargo, en nuestro caso experimentamos problemas persistentes de permisos en este puerto. A pesar de múltiples intentos de solución (modificando permisos, añadiendo el usuario al grupo `dialout`, verificando servicios activos, etc.), ninguna de las acciones parecía resolver el problema. Esto nos hizo perder bastante tiempo durante el desarrollo.
 
 Curiosamente, tras varios intentos y reinicios, el error dejó de aparecer de forma aparentemente espontánea, y la conexión entre la Raspberry Pi y el dron comenzó a funcionar correctamente. No se pudo identificar con certeza cuál fue la solución definitiva, por lo que se recomienda paciencia y revisar cuidadosamente la configuración en caso de experimentar este mismo error.
+
+### 6. Alimentación a la Raspberry Pi
+
+Una vez completada la conexión UART, es importante proporcionar alimentación eléctrica estable a la Raspberry Pi para que funcione correctamente durante el vuelo.
+
+La Raspberry Pi se alimenta desde la placa de distribución de energía del dron, utilizando el cable que habíamos preparado previamente pero que aún no habíamos usado hasta ahora. En la caja de la Raspberry Pi hay un conector de 5 pines diseñado específicamente para esta conexión.
+
+El cable de alimentación debe llevar:
+- +5V al pin número 2 del conector
+- GND (masa) al pin número 3 del conector
+
+<img src="https://github.com/user-attachments/assets/987966ad-758f-4fee-992c-c7fcbf248aa0" alt="Alim" width="300"/>
+
+Estos pines se deberían llevar a los correspondientes pines de la Raspberry Pi:
+- El cable rojo al pin marcado como +5V (pin 4)
+- El cable negro al pin marcado como GND (pin 9)
+
+Esto asegura que la Raspberry Pi reciba energía directamente desde la batería, sin necesidad de utilizar un cargador o fuente externa durante el funcionament, siendo esto lo que se necesita para alimetar a la Raspberry durante el vuelo.
+
+> ⚠️ **Asegúrate de conectar correctamente los pines**, ya que una conexión invertida o incorrecta puede dañar la Raspberry Pi de forma irreversible.
