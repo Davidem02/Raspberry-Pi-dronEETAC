@@ -394,10 +394,12 @@ Utiliza técnicas de procesamiento de imágenes para combinar múltiples captura
 
 Debido a la baja calidad de las fotografias tomadas, las cuales presentan distorsiones y desenfocamientos, no se ha podido realizar un  buen stitching de todo el recorrido del dron.
 
-<img src="https://private-user-images.githubusercontent.com/208936166/448505170-1a1d5130-0be1-4058-bb02-a190bac45c7d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDg0NTMxNTQsIm5iZiI6MTc0ODQ1Mjg1NCwicGF0aCI6Ii8yMDg5MzYxNjYvNDQ4NTA1MTcwLTFhMWQ1MTMwLTBiZTEtNDA1OC1iYjAyLWExOTBiYWM0NWM3ZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUyOFQxNzIwNTRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00ZTExZTBiYzk3YzQ2ZTljMDhjYTkzMjU1ZjllMmFkYTY4ZmVlM2MyYmNjMGE2NGUzOTI0MmI5OWJjYTljNzUxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.UWu-SuE6Umou_agCi_vVyiS0uFI_JbqgOY1XZr_YQzU" alt="Panorama" width="800"/>
+![image](https://github.com/user-attachments/assets/22963123-3bca-474e-bca8-c206cb4a9964)
+![image](https://github.com/user-attachments/assets/5cd05c58-6dc9-412f-9bd6-6803b135290d)
 
 Sin embargo, se han identificado una secuencia de tres imágenes consecutivas con calidad suficiente sobre las que sí se pudo aplicar el algoritmo de stitching de forma satisfactoria, obteniendo un resultado correcto.
 ![image](https://github.com/user-attachments/assets/2bfe2417-6d97-4a52-85fd-cec315c40f56)
+![image](https://github.com/user-attachments/assets/87243f61-54bf-40a4-bcfd-1588258a5aa8)
 
 
 
