@@ -390,6 +390,12 @@ Este script se encarga de **unir las imágenes tomadas durante el vuelo** en un 
 
 Utiliza técnicas de procesamiento de imágenes para combinar múltiples capturas en una vista panorámica del terreno recorrido.
 
+## Vuelo
+Mediante Mission Planner se ha creado una misión donde el dron hace una trayectoria rectilinia. En ella, se han colocado distintos conos de colores con el objetivo de ayudar al algoritmo de stitching.
+![image](https://github.com/user-attachments/assets/35b29387-2db6-4ff9-9594-3cf39eda81cd)
+
+![image](https://github.com/user-attachments/assets/7a4a0c40-9406-4089-aa1f-586b6ad49618)
+
 ## Resultados
 
 Debido a la baja calidad de las fotografias tomadas, las cuales presentan distorsiones y desenfocamientos, no se ha podido realizar un  buen stitching de todo el recorrido del dron.
