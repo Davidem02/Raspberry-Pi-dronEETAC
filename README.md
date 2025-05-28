@@ -392,5 +392,5 @@ Utiliza técnicas de procesamiento de imágenes para combinar múltiples captura
 
 ## Resultados
 
-<img src="panorama2.png" alt="Dron montado y operativo (fase inicial)" width="500"/>
+<img src="https://github.com/Davidem02/Raspberry-Pi-dronEETAC/issues/1#issue-3098021189" alt="Dron montado y operativo (fase inicial)" width="500"/>
 
