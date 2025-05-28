@@ -1,9 +1,4 @@
 # Raspberry-Pi-dronEETAC
 
 lkwenfjwef
-drd
-rg
-er
-g
-re
-g
+Aqui hacer toda la explicacion de el codigo y lo que se hace en el proyecto.
