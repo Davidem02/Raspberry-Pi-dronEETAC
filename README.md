@@ -420,6 +420,8 @@ Esta basado en el codigo de este repositorio: https://github.com/OpenStitching/s
 
 ### 5. `App.py`: Se queria utilizar esta aplicación para el vuelo de prueba, pero por falta de tiempo no se pudo acabar de completar 
 
+Este codigo utiliza la libreria DronLink: https://github.com/dronsEETAC/DronLink.git
+
 #### Función `stitching_window(dron)`
 
 La función `stitching_window(dron)` permite planificar misiones automáticas sobre un área definida. El usuario introduce la velocidad, altitud y solapamiento, y define 4 puntos en el mapa para marcar la zona de interés. A partir de estos datos, el programa calcula la separación entre trayectorias según la altitud y el campo de visión de la cámara. 
