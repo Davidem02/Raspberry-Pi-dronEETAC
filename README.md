@@ -32,7 +32,7 @@ A continuación se muestra el material **extra** que se ha añadido al dron para
 
 <img src="https://github.com/user-attachments/assets/80249896-b468-4a8c-9fd2-f39dd5329622" alt="Jumpers multicolores" width="200"/>
 
-##### -Cables de telemetría y alimentación: Conectados de la caja al dron
+##### -Cables de telemetría y alimentación: Telemetria de la caja al dron y corriente de la placa distribuidora a la caja
 
 <img src="https://github.com/user-attachments/assets/aa4d092c-e369-4873-82a9-f9cadcd2a1bc" alt="Cables de telemetría" width="200"/>
 <img src="https://github.com/user-attachments/assets/c31ecad2-7ae4-4c17-a9e9-915a39595853" alt="Cables de alimentación" width="200"/>
@@ -183,4 +183,68 @@ Otra herramienta útil es **WinSCP**, que permite **transferir archivos** entre 
 Para conectarte, simplemente introduce los mismos datos que en el PuTTY. Una vez conectado, verás una interfaz de doble panel para arrastrar y soltar archivos entre ambos dispositivos.
 
 <img src="https://github.com/user-attachments/assets/0faacd05-78e8-4f1c-814c-dbfd5828e06d" alt="SSH" width="350"/>
+
+### 5. Conexión UART entre la Raspberry Pi y el Autopiloto
+
+Para que la Raspberry Pi pueda comunicarse con el autopiloto (Cube Orange), es necesario conectarla físicamente a uno de sus puertos serie, y así permitir la comunicación mediante el protocolo UART. Esta conexión permitirá que la RPi envíe comandos y reciba datos del autopiloto durante el vuelo. Este protocolo es relativamente simple, solo se necesitan dos 3 cables, dos para la conexión de transmision y recepcion y un tercero para el ground.
+
+<img src="https://github.com/user-attachments/assets/79e232a9-3cf4-445f-bac9-b16a34d50768" alt="Uart" width="500"/>
+
+El autopiloto dispone de varios puertos de comunicación en la Carrier Board. Utilizaremos el puerto TELEM2, que funciona bajo el protocolo UART y está pensado para la conexión de periféricos como la RPi.
+
+<img src="https://github.com/user-attachments/assets/780ef244-0fc9-497f-b980-863efb7efda1" alt="Uart" width="150"/>
+<img src="https://github.com/user-attachments/assets/95138fe3-2e0e-4f06-8205-1f1b501900b3" alt="Uart" width="500"/>
+
+Los pines que se han utilizado han sido el 2 (Tx), el 3 (Rx) y el 6 (Gnd) sabiendo que el pin 1 es el primero empezando desde la izquierda.
+
+#### Coonexión entre Raspberry Pi y caja
+
+Para establecer la comunicación entre la Raspberry Pi y el autopiloto (a través del puerto TELEM2), se utiliza un conector de 6 pines, aunque solo emplearemos 3 de ellos: TX, RX y GND. Este tipo de conector es el que se utiliza comúnmente para cables de telemetría.
+
+Para realizar la conexión física, se utilizan cables jumper hembra-hembra, que permiten enlazar directamente los pines del conector de 6 pines con los pines GPIO de la Raspberry Pi.
+
+<img src="https://github.com/user-attachments/assets/e33d0019-db07-4a11-ae5d-9d0631305fe4" alt="Uart" width="400"/>
+<img src="https://github.com/user-attachments/assets/752a532e-6f50-4e38-a8f4-039382777573" alt="Uart" width="500"/>
+
+ ##### Pines Raspberry Pi:
+- Pin 6 → GND
+- Pin 8 → TX (GPIO14)
+- Pin 10 → RX (GPIO15)
+
+##### Pines conector: Dado que el conector tiene 6 pines y solo necesitamos 3, usamos un multímetro para identificar cuáles corresponden a:
+- Pin 2 del TELEM2 → TX
+- Pin 3 del TELEM2 → RX
+- Pin 6 del TELEM2 → GND
+
+<img src="https://github.com/user-attachments/assets/065aa86b-a6c9-4158-818c-000ea5ef17a2" alt="Uart" width="500"/>
+
+Una vez identificados, se conectan a los pines correspondientes de la Raspberry Pi utilizando los jumpers hembra-hembra, asegurando el cruce correcto de TX y RX:
+
+- TX (autopiloto) → RX (RPi / Pin 10)
+- RX (autopiloto) → TX (RPi / Pin 8)
+- GND → GND (RPi / Pin 6)
+
+#### Activar UART en la Raspberry Pi
+
+Una vez establecida la conexión física entre el autopiloto y la Raspberry Pi mediante los pines UART (TX, RX y GND), es necesario activar la interfaz UART por software. De forma predeterminada, el puerto serie de la Raspberry Pi no está habilitado para comunicación con otros dispositivos, ya que puede estar reservado para la consola del sistema.
+
+Activar el UART permitirá que la Raspberry Pi envíe y reciba datos al autopiloto a través del puerto `/dev/serial0`, lo cual es esencial para la telemetría y la comunicación bidireccional.
+
+1. Abre la configuración de la Raspberry Pi con:
+
+   ```bash
+   sudo raspi-config
+
+2. Navega a: Interface Options → Serial Port
+3. A las preguntas que aparecen, responde lo siguiente:
+   - ¿Quieres que la consola use el puerto serie? → No
+   - ¿Quieres habilitar la interfaz serie? → Sí
+4. Finalmente, reinicia la Raspberry Pi para aplicar los cambios:
+
+   ```bash
+   sudo reboot
+
+<img src="https://github.com/user-attachments/assets/bb30533a-2d86-432b-a80e-b132c35ba86c" alt="UART" width="300"/>
+<img src="https://github.com/user-attachments/assets/50a2b7f7-d6b5-4b71-b983-78bddae9b92f" alt="UART" width="300"/>
+<img src="https://github.com/user-attachments/assets/b045f50e-5c70-46dd-96cc-188fa3946920" alt="UART" width="300"/>
 
