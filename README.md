@@ -129,7 +129,6 @@ Para que el punto de acceso se active automáticamente al encender la Raspberry 
 
 <img src="https://github.com/user-attachments/assets/96c4bb51-72df-446a-adf4-cded8ad2a66d" alt="HotSpot" width="500"/>
 <img src="https://github.com/user-attachments/assets/51df7874-a557-4e3d-8a46-8a72c2adf88d" alt="HotSpot" width="500"/>
-<img src="https://github.com/user-attachments/assets/8b404162-7c4e-40e2-9443-a531ae97390d" alt="HotSpot" width="500"/>
 
 #### Comprobación de IPs
 
@@ -138,4 +137,23 @@ Una vez configurado todo, comprueba que ambas conexiones están activas y tienen
 - Especialmente importante es la IP del hotspot (por defecto suele ser `10.42.0.1`), ya que será la IP a la que te conectarás desde tu portátil para usar **SSH**.
   
 <img src="https://github.com/user-attachments/assets/089653c9-0f98-414c-af13-c616725064de" alt="HotSpot" width="500"/>
+
+### 4. Conexión con la Raspberry Pi via SSH con el HotSpot
+
+Para poder acceder a la Raspberry Pi desde un ordenador u otro dispositivo, primero es necesario activar el servicio SSH en la propia RPi.
+
+#### Activar SSH en la Raspberry Pi
+
+1. Abre una terminal en la Raspberry Pi.
+2. Ejecuta el siguiente comando:
+
+   ```bash
+   sudo raspi-config
+
+3. En el menú que aparece, navega por las siguientes opciones: Interfacing Options → SSH → Enable
+
+<img src="https://github.com/user-attachments/assets/8bf7ef17-91ae-4e44-b012-b85a2e1a42cb" alt="SSH" width="500"/>
+<img src="https://github.com/user-attachments/assets/48a39e25-44fc-4762-86c7-d321646a5063" alt="SSH" width="500"/>
+
+4. Confirma y sal del menú. A partir de ahora la Raspberry Pi aceptará conexiones remotas vía SSH.
 
