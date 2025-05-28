@@ -390,13 +390,14 @@ Este script se encarga de **unir las imágenes tomadas durante el vuelo** en un 
 
 Utiliza técnicas de procesamiento de imágenes para combinar múltiples capturas en una vista panorámica del terreno recorrido.
 
-## Vuelo
+Esta basado en el codigo de este repositorio: https://github.com/OpenStitching/stitching.git
+
+## Vuelo de prueba
 
 Mediante Mission Planner se ha creado una misión donde el dron hace una trayectoria rectilinia. En ella, se han colocado distintos conos de colores con el objetivo de ayudar al algoritmo de stitching.
 
-![image](https://github.com/user-attachments/assets/35b29387-2db6-4ff9-9594-3cf39eda81cd)
-
-![image](https://github.com/user-attachments/assets/7a4a0c40-9406-4089-aa1f-586b6ad49618)
+<img src="https://github.com/user-attachments/assets/35b29387-2db6-4ff9-9594-3cf39eda81cd" alt="Vuelo" width="700"/>
+<img src="https://github.com/user-attachments/assets/7a4a0c40-9406-4089-aa1f-586b6ad49618" alt="Vuelo" width="300"/>
 
 Los valores de parametros escogidos han sido:
 - Vuelo 1: alt 4 mts i  1 fps
@@ -405,16 +406,18 @@ Los valores de parametros escogidos han sido:
 
 Claramente, la mejor opción fué la 2, ya que la altura de vuelo es mayor y permite un gran angulo de visión.
 
-## Resultados
+## Resultados del stiching
 
 Debido a la baja calidad de las fotografias tomadas, las cuales presentan distorsiones y desenfocamientos, no se ha podido realizar un  buen stitching de todo el recorrido del dron.
 
-![image](https://github.com/user-attachments/assets/22963123-3bca-474e-bca8-c206cb4a9964)
-![image](https://github.com/user-attachments/assets/5cd05c58-6dc9-412f-9bd6-6803b135290d)
+<img src="https://github.com/user-attachments/assets/22963123-3bca-474e-bca8-c206cb4a9964" alt="Vuelo" width="500"/>
+<img src="https://github.com/user-attachments/assets/76d53950-ca5d-46c7-bf9f-a6adbfce388b" alt="Vuelo" width="1000"/>
 
 Sin embargo, se han identificado una secuencia de tres imágenes consecutivas con calidad suficiente sobre las que sí se pudo aplicar el algoritmo de stitching de forma satisfactoria, obteniendo un resultado correcto.
-![image](https://github.com/user-attachments/assets/2bfe2417-6d97-4a52-85fd-cec315c40f56)
-![image](https://github.com/user-attachments/assets/e8626c4d-0af0-4f4b-97ad-005f60724b15)
+
+<img src="https://github.com/user-attachments/assets/2bfe2417-6d97-4a52-85fd-cec315c40f56" alt="Vuelo" width="1000"/>
+<img src="https://github.com/user-attachments/assets/e8626c4d-0af0-4f4b-97ad-005f60724b15" alt="Vuelo" width="800"/>
+
 
 
 
