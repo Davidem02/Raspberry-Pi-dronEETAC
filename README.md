@@ -91,3 +91,51 @@ Cuando se ofrezca la opción de conectarse a una red Wi-Fi, la saltaremos selecc
 Finalmente, la Raspberry Pi intentará actualizarse, pero al no tener internet, fallará. No pasa nada: tras completar estos pasos, el sistema se reiniciará y mostrará la pantalla de inicio.
 
 <img src="https://github.com/user-attachments/assets/38d066fe-6830-4908-be79-8648584714b5" alt="Escritorio" width="400"/>
+
+### 3. Configuración de las conexiones a Internet
+
+La Raspberry Pi puede conectarse a Internet por cable Ethernet, pero en este proyecto **no utilizaremos esa opción**. En su lugar, configuraremos **dos conexiones Wi-Fi** distintas:
+
+1. **Conexión Wi-Fi interna (cliente):** Esta es la tarjeta Wi-Fi integrada de la Raspberry Pi. Se usará para conectarse a una red Wi-Fi existente (en nuestro caso, `dronsEETAC`), lo que permitirá a la Raspberry Pi **tener acceso a Internet**, algo que no es necesario pero ayuda durante la configuración.
+
+2. **Conexión Wi-Fi externa (hotspot):** Para esta función, conectaremos un **adaptador Wi-Fi USB** a uno de los puertos disponibles. Este adaptador se configurará como un **punto de acceso (hotspot)**, de forma que otros dispositivos (como un portátil) puedan conectarse directamente a la Raspberry Pi a través de esta red. Esto será útil, por ejemplo, para **acceder por SSH** a la Raspberry Pi sin necesidad de conexión a internet externa mediante aplicaciones como Putty.
+
+#### Configuración de la conexión Wi-Fi interna
+
+Para comenzar, abrimos la configuración de redes desde el icono Wi-Fi. Veremos que hay **dos interfaces disponibles**:
+
+- `Broadcom BCM43438` → Es la Wi-Fi interna. La usaremos para conectarnos a una red ya existente como `dronsEETAC`.
+
+- `Ralink RT5370` → Es el adaptador USB. Funciona directamente al conectarlo, ya que el driver está incluido en el sistema operativo. Si se usara otro modelo, puede que se necesite instalar controladores adicionales.
+
+<img src="https://github.com/user-attachments/assets/25cf25dd-06e5-4624-8832-7f78f25fcdc9" alt="Redes" width="500"/>
+
+#### Configuración del hotspot (punto de acceso)
+
+En la interfaz del adaptador USB, creamos una red nueva que funcionará como **punto de acceso Wi-Fi**. Esta red será el canal de comunicación directa entre nuestro portátil y la Raspberry Pi. Le pondremos un nombre que queramos, en este caso `MiHotSpot`.
+
+<img src="https://github.com/user-attachments/assets/49b3b151-e889-4512-930f-ebc07456d504" alt="HotSpot" width="500"/>
+<img src="https://github.com/user-attachments/assets/c1ed9758-0d0a-43cd-a342-ae61e5b5f226" alt="HotSpot" width="500"/>
+<img src="https://github.com/user-attachments/assets/8b404162-7c4e-40e2-9443-a531ae97390d" alt="HotSpot" width="500"/>
+
+#### Activar el hotspot al inicio
+
+Para que el punto de acceso se active automáticamente al encender la Raspberry Pi:
+
+1. Haz clic en el icono de Wi-Fi y selecciona **Advanced Options**.
+2. Abre **Editar conexiones**.
+3. Doble clic en la red `MiHotSpot`.
+4. En la pestaña **General**, activa la opción de conexión automática al arrancar.
+
+<img src="https://github.com/user-attachments/assets/96c4bb51-72df-446a-adf4-cded8ad2a66d" alt="HotSpot" width="500"/>
+<img src="https://github.com/user-attachments/assets/51df7874-a557-4e3d-8a46-8a72c2adf88d" alt="HotSpot" width="500"/>
+<img src="https://github.com/user-attachments/assets/8b404162-7c4e-40e2-9443-a531ae97390d" alt="HotSpot" width="500"/>
+
+#### Comprobación de IPs
+
+Una vez configurado todo, comprueba que ambas conexiones están activas y tienen IP asignada.
+
+- Especialmente importante es la IP del hotspot (por defecto suele ser `10.42.0.1`), ya que será la IP a la que te conectarás desde tu portátil para usar **SSH**.
+  
+<img src="https://github.com/user-attachments/assets/089653c9-0f98-414c-af13-c616725064de" alt="HotSpot" width="500"/>
+
