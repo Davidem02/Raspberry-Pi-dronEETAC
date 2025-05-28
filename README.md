@@ -348,6 +348,31 @@ Este procedimiento permite garantizar que el sistema esté operativo durante el 
 
 > ⚠️ **Nota:** Este método es funcional pero no automatizado.
 
+## Vuelo de prueba
+
+Mediante Mission Planner se ha creado una misión donde el dron hace una trayectoria rectilinia. En ella, se han colocado distintos conos de colores con el objetivo de ayudar al algoritmo de stitching.
+
+<img src="https://github.com/user-attachments/assets/35b29387-2db6-4ff9-9594-3cf39eda81cd" alt="Vuelo" width="700"/>
+<img src="https://github.com/user-attachments/assets/7a4a0c40-9406-4089-aa1f-586b6ad49618" alt="Vuelo" width="300"/>
+
+Los valores de parametros escogidos han sido:
+- Vuelo 1: alt 4 mts i  1 fps
+- Vuelo 2: alt 7 mts i  1 fps
+- Vuelo 3: alt 5 mts i  2 fps
+
+Claramente, la mejor opción fué la 2, ya que la altura de vuelo es mayor y permite un gran angulo de visión.
+
+## Resultados del stiching
+
+Debido a la baja calidad de las fotografias tomadas, las cuales presentan distorsiones y desenfocamientos, no se ha podido realizar un  buen stitching de todo el recorrido del dron.
+
+<img src="https://github.com/user-attachments/assets/22963123-3bca-474e-bca8-c206cb4a9964" alt="Vuelo" width="500"/>
+<img src="https://github.com/user-attachments/assets/76d53950-ca5d-46c7-bf9f-a6adbfce388b" alt="Vuelo" width="1000"/>
+
+Sin embargo, se han identificado una secuencia de tres imágenes consecutivas con calidad suficiente sobre las que sí se pudo aplicar el algoritmo de stitching de forma satisfactoria, obteniendo un resultado correcto.
+
+<img src="https://github.com/user-attachments/assets/2bfe2417-6d97-4a52-85fd-cec315c40f56" alt="Vuelo" width="1000"/>
+<img src="https://github.com/user-attachments/assets/e8626c4d-0af0-4f4b-97ad-005f60724b15" alt="Vuelo" width="800"/>
 
 ## Códigos utilizados
 
@@ -392,34 +417,65 @@ Utiliza técnicas de procesamiento de imágenes para combinar múltiples captura
 
 Esta basado en el codigo de este repositorio: https://github.com/OpenStitching/stitching.git
 
-## Vuelo de prueba
 
-Mediante Mission Planner se ha creado una misión donde el dron hace una trayectoria rectilinia. En ella, se han colocado distintos conos de colores con el objetivo de ayudar al algoritmo de stitching.
+### 5. `App.py`: Se queria utilizar esta aplicación para el vuelo de prueba, pero por falta de tiempo no se pudo acabar de completar 
 
-<img src="https://github.com/user-attachments/assets/35b29387-2db6-4ff9-9594-3cf39eda81cd" alt="Vuelo" width="700"/>
-<img src="https://github.com/user-attachments/assets/7a4a0c40-9406-4089-aa1f-586b6ad49618" alt="Vuelo" width="300"/>
+#### Función `stitching_window(dron)`
 
-Los valores de parametros escogidos han sido:
-- Vuelo 1: alt 4 mts i  1 fps
-- Vuelo 2: alt 7 mts i  1 fps
-- Vuelo 3: alt 5 mts i  2 fps
+La función `stitching_window(dron)` permite planificar misiones automáticas sobre un área definida. El usuario introduce la velocidad, altitud y solapamiento, y define 4 puntos en el mapa para marcar la zona de interés. A partir de estos datos, el programa calcula la separación entre trayectorias según la altitud y el campo de visión de la cámara. 
 
-Claramente, la mejor opción fué la 2, ya que la altura de vuelo es mayor y permite un gran angulo de visión.
+- **Generación de trayectorias**: Todas las líneas de vuelo se generan paralelas al lado más largo del área, separadas por la distancia óptima. Se deja un margen lateral de media foto para cubrir mejor los bordes.
+- **Patrón de vuelo**: El patrón se dibuja con líneas rojas en zig-zag, con transiciones suaves entre pasadas.
+- **Ejecución de la misión**: Al presionar "Aplicar Misión", el dron se arma, despega, recorre toda la ruta y regresa automáticamente. Este proceso es fácil para el usuario pero técnicamente preciso.
 
-## Resultados del stiching
+El código define una interfaz gráfica donde el usuario puede marcar los 4 puntos en el mapa usando `map_widget.set_marker` y `map_widget.set_path`. Las trayectorias se calculan mediante interpolación entre pares de puntos, y la separación se basa en el campo de visión (FOV) de la cámara (`calc_line_spacing`). Una vez generadas, las trayectorias se envían al dron como una misión a través de `dron.executeMission(flight_plan, velocidad)`, que estructura los waypoints y controla todo el proceso. Internamente, `executeMission` utiliza funciones como `arm`, `takeOff`, `goto` (para ir al primer waypoint) y `_executeMission` para enviar los puntos via MAVLink. Al finalizar, se llama a `RTL()` para que el dron regrese al punto de partida.
 
-Debido a la baja calidad de las fotografias tomadas, las cuales presentan distorsiones y desenfocamientos, no se ha podido realizar un  buen stitching de todo el recorrido del dron.
+---
 
-<img src="https://github.com/user-attachments/assets/22963123-3bca-474e-bca8-c206cb4a9964" alt="Vuelo" width="500"/>
-<img src="https://github.com/user-attachments/assets/76d53950-ca5d-46c7-bf9f-a6adbfce388b" alt="Vuelo" width="1000"/>
+#### Cálculo de Distancias Laterales
 
-Sin embargo, se han identificado una secuencia de tres imágenes consecutivas con calidad suficiente sobre las que sí se pudo aplicar el algoritmo de stitching de forma satisfactoria, obteniendo un resultado correcto.
+Para realizar el _stitching_ correctamente, es necesario calcular la distancia lateral entre trayectorias, la cual depende de:
+- La altura de vuelo (`h`).
+- El solapamiento (`overlap`).
+- Las características de la cámara, en particular el campo de visión (FOV).
 
-<img src="https://github.com/user-attachments/assets/2bfe2417-6d97-4a52-85fd-cec315c40f56" alt="Vuelo" width="1000"/>
-<img src="https://github.com/user-attachments/assets/e8626c4d-0af0-4f4b-97ad-005f60724b15" alt="Vuelo" width="800"/>
+##### Fórmula para el cálculo
+La distancia cubierta por la cámara se calcula con la siguiente fórmula, donde `θ` es el campo de visión:
+
+```BASHH
+W = 2 * h * tan(θ / 2)
+```
+
+**Ejemplo con la cámara RaspberryPi Camera SC1223**:
+- **FOV horizontal**: 66°.
+- **Altura de vuelo**: 5 metros.
+- **Cálculo**: `W = 2 * 5 * tan(66 / 2) ≈ 6.494 m`
 
 
+##### Solapamiento (_Overlap_)
+```BASHH
+Distancia lateral = W * (1 - 𝑂𝑣𝑒𝑟𝑙𝑎𝑝 𝑇ℎ𝑟𝑒𝑠ℎ𝑜𝑙𝑑(%))
+```
+Para garantizar un buen _stitching_, se recomienda un solapamiento superior al 50%. En este caso, se utiliza un 60%.
 
+**Distancia lateral ajustada por solapamiento**: `Distancia lateral = W * (1 - 0.6) = 6.494 * 0.4 = 2.598 m`
 
+---
 
+#### Configuración del Mission Planner
+
+Para facilitar el _stitching_ de imágenes, se recomienda ajustar el parámetro `WP_YAW_BEHAVIOUR` en el Mission Planner. Este parámetro controla cómo el dron orienta su yaw durante una misión automática en modo `Auto`.
+
+##### Opciones disponibles:
+1. **Never change yaw (0)**: El dron mantiene la misma orientación durante toda la misión.
+2. **Face next waypoint (1)**: El dron gira para apuntar al siguiente waypoint en cada segmento.
+3. **Face next waypoint except RTL (2)**: Similar al modo 1, pero mantiene el heading durante el `Return to Launch (RTL)`.
+4. **Face along GPS course (3)**: El dron apunta según la dirección real del movimiento.
+
+**Recomendación**: Usar el modo **0** para mantener una orientación constante del dron durante la misión. Esto asegura que todas las imágenes se capturen con el mismo ángulo y orientación, mejorando el solapamiento y facilitando el _stitching_.
+
+---
+
+##### Tabla de Configuración
+<img src="https://github.com/user-attachments/assets/dc103909-1b06-48cf-a0c6-b26ad4e8ba5d" alt="Vuelo" width="1000"/>
 
