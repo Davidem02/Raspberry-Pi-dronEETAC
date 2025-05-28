@@ -248,3 +248,8 @@ Activar el UART permitirá que la Raspberry Pi envíe y reciba datos al autopilo
 <img src="https://github.com/user-attachments/assets/50a2b7f7-d6b5-4b71-b983-78bddae9b92f" alt="UART" width="300"/>
 <img src="https://github.com/user-attachments/assets/b045f50e-5c70-46dd-96cc-188fa3946920" alt="UART" width="300"/>
 
+Una vez reiniciada, la Raspberry Pi debería tener habilitada la comunicación UART a través del puerto `/dev/serial0`, lo que permitiría el intercambio de datos con el autopiloto.
+
+Sin embargo, en nuestro caso experimentamos problemas persistentes de permisos en este puerto. A pesar de múltiples intentos de solución (modificando permisos, añadiendo el usuario al grupo `dialout`, verificando servicios activos, etc.), ninguna de las acciones parecía resolver el problema. Esto nos hizo perder bastante tiempo durante el desarrollo.
+
+Curiosamente, tras varios intentos y reinicios, el error dejó de aparecer de forma aparentemente espontánea, y la conexión entre la Raspberry Pi y el dron comenzó a funcionar correctamente. No se pudo identificar con certeza cuál fue la solución definitiva, por lo que se recomienda paciencia y revisar cuidadosamente la configuración en caso de experimentar este mismo error.
