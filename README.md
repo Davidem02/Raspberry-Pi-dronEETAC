@@ -430,7 +430,7 @@ La función `stitching_window(dron)` permite planificar misiones automáticas so
 
 El código define una interfaz gráfica donde el usuario puede marcar los 4 puntos en el mapa usando `map_widget.set_marker` y `map_widget.set_path`. Las trayectorias se calculan mediante interpolación entre pares de puntos, y la separación se basa en el campo de visión (FOV) de la cámara (`calc_line_spacing`). Una vez generadas, las trayectorias se envían al dron como una misión a través de `dron.executeMission(flight_plan, velocidad)`, que estructura los waypoints y controla todo el proceso. Internamente, `executeMission` utiliza funciones como `arm`, `takeOff`, `goto` (para ir al primer waypoint) y `_executeMission` para enviar los puntos via MAVLink. Al finalizar, se llama a `RTL()` para que el dron regrese al punto de partida.
 
----
+<img src="https://github.com/user-attachments/assets/354cdd59-9398-4f26-b5fd-3a572fe19bf8" alt="Stiching" width="700"/>
 
 #### Cálculo de Distancias Laterales
 
@@ -474,8 +474,7 @@ Para facilitar el _stitching_ de imágenes, se recomienda ajustar el parámetro 
 
 **Recomendación**: Usar el modo **0** para mantener una orientación constante del dron durante la misión. Esto asegura que todas las imágenes se capturen con el mismo ángulo y orientación, mejorando el solapamiento y facilitando el _stitching_.
 
----
 
 ##### Tabla de Configuración
-<img src="https://github.com/user-attachments/assets/dc103909-1b06-48cf-a0c6-b26ad4e8ba5d" alt="Vuelo" width="1000"/>
+<img src="https://github.com/user-attachments/assets/dc103909-1b06-48cf-a0c6-b26ad4e8ba5d" alt="MP" width="1000"/>
 
