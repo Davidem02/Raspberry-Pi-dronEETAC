@@ -1,20 +1,19 @@
-# Mapeo amb Raspberry-Pi-dronEETAC
+# Guia per a la Integració d'una Raspberry Pi en un Dron
 
-Introducció i objectius
-=======
-Casi tot igual que en la guia
+> ⚠️Aquesta guia **no està completa**, però proporciona una **bona base des d’on començar** i anar afegint funcionalitats a mesura que es desenvolupa el projecte.
 
-Al mooment de conectar la raspberryPi per el serial per a pasar la telemetria s'han tingut que cambiar algunes coses
+Aquesta guia ofereix una base sòlida per començar a treballar amb una **Raspberry Pi integrada** en un dron, juntament amb un **mòdul de càmera**. El punt de partida és un dron ja muntat i funcional, com el que es mostra a la seguent imatge, capaç de volar tant de manera manual (amb emissora de ràdio) com automàtica mitjançant el programari **Mission Planner**.
 
-Per a editar el config.txt sa utilitzar el sudo nano /boot/firmware/config.txt
+<img src="https://github.com/user-attachments/assets/fe6e4731-297a-45f7-8bf2-ad365cc31fc6" alt="Dron muntat i operatiu (fase inicial)" width="500"/>
 
-Per comunicar la RaspberryPi a traves de port serial
+> ⚠️ **Aquesta guia no inclou el muntatge inicial del dron.** Es parteix d’una plataforma ja operativa. El focus està en la integració de nous components per ampliar-ne les funcionalitats. Guia de muntatge del dron: https://github.com/dronsEETAC/GuiaHexsoonEDU450.git
 
-1- Primer provem directament conectar la Raspberry Pi amb l'ordinador
+## Què es vol aconseguir
 
-2- Segon conectar la Raspberry Pi amb la controladora y esta conectada per cable al ordenador
+Amb aquesta integració, es busca aconseguir que el dron sigui capaç de:
 
-3- Tercer conectar la Raspberry Pi amb la controladora y esta conectada per telemetria
+- Capturar **imatges o vídeo** durant el vol.
+- Executar **codi personalitzat** des de la Raspberry Pi sense dependre d’un ordinador extern.
+- Fer un **mapatge bàsic del terreny** que sobrevola, combinant la imatge capturada amb la posició GPS del dron.
+- Establir les bases per a aplicacions futures com la **detecció d’objectes**, el seguiment, o la presa de decisions autònoma en temps real.
 
-
->>>>>>> 0869425fffcf1e5e82690edc1d76540492d3c523
