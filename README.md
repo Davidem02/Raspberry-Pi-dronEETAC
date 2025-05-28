@@ -278,9 +278,11 @@ Esto asegura que la Raspberry Pi reciba energía directamente desde la batería,
 
 Una de las funcionalidades que se pretendía implementar era que el script principal (`provaVol.py`) se ejecutara automáticamente en cuanto la Raspberry Pi se encendiera, sin necesidad de iniciar sesión ni ejecutar el código manualmente.
 
-#### Método 1
+#### Método 1: Servicio `systemd`
 
-Para ello, se utilizó el sistema de servicios de Linux (`systemd`). Se creó un archivo de servicio personalizado con el siguiente contenido:
+Se creó un servicio personalizado usando `systemd`. Este método permite ejecutar scripts al iniciar el sistema, independientemente del entorno gráfico o la sesión de usuario.
+
+**Archivo de configuración del servicio (`volar.service`):**
 
 ```ini
 [Unit]
@@ -288,8 +290,8 @@ Description=Script de vuelo automático
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/git/DronLink/provaVol.py
-WorkingDirectory=/home/git/DronLink/
+ExecStart=/usr/bin/python3 /ruta/completa/a/provaVol.py
+WorkingDirectory=/ruta/completa/a/
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
@@ -299,20 +301,14 @@ User=pi
 WantedBy=multi-user.target
 ```
 
-Este archivo se guardó en:
+**Pasos para activarlo:**
 
 ```bash
-/etc/systemd/system/volar.service
-```
-
-Y se activó con los comandos:
-
-```bash
+sudo cp volar.service /etc/systemd/system/
 sudo systemctl daemon-reexec
 sudo systemctl enable volar.service
 sudo systemctl start volar.service
 ```
-
 
 
 #### Método 2: `crontab` con @reboot
