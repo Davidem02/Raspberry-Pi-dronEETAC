@@ -12,7 +12,7 @@ stitcher = Stitcher(detector="sift", confidence_threshold=0.2)
 # ========== INICIALITZACIÓ ==========
 start = False
 ultima_telemetria = None
-foto_interval = 0.5
+foto_interval = 0.5 # <==== Quantes fps volem
 foto_count = 1
 index_imatge = 1
 
@@ -43,8 +43,8 @@ except Exception as e:
     dron.disconnect()
     sys.exit(1)
 
-# Esperar fins que flightMode sigui "GUIDED"
-print('[INFO] Esperant mode "GUIDED"...')
+# Esperar fins que flightMode sigui "AUTO"
+print('[INFO] Esperant mode "AUTO"...')
 while True:
     if ultima_telemetria and ultima_telemetria.get("flightMode") == "AUTO":
         print('[INFO] Mode "GUIDED" detectat. Començant la captura.')
@@ -81,9 +81,10 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q') or ultima_telemetria.get("flightMode") == "LAND":
         break
         
-        
+# Stiching 
 panorama = stitcher.stitch(["imatge?.jpg"])
 panorama.save('panorama.jpg')
+
 # ========== FINALITZACIÓ ==========
 picam2.stop()
 cv2.destroyAllWindows()
