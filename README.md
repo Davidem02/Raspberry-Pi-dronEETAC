@@ -399,7 +399,7 @@ Debido a la baja calidad de las fotografias tomadas, las cuales presentan distor
 
 Sin embargo, se han identificado una secuencia de tres imágenes consecutivas con calidad suficiente sobre las que sí se pudo aplicar el algoritmo de stitching de forma satisfactoria, obteniendo un resultado correcto.
 ![image](https://github.com/user-attachments/assets/2bfe2417-6d97-4a52-85fd-cec315c40f56)
-![image](https://github.com/user-attachments/assets/87243f61-54bf-40a4-bcfd-1588258a5aa8)
+![image](https://github.com/user-attachments/assets/e8626c4d-0af0-4f4b-97ad-005f60724b15)
 
 
 
