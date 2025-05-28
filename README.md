@@ -1,8 +1,6 @@
 # Mapeo amb Raspberry-Pi-dronEETAC
 
-<<<<<<< HEAD
-lkwenfjwef
-Aqui hacer toda la explicacion de el codigo y lo que se hace en el proyecto.
+Introducció i objectius
 =======
 Casi tot igual que en la guia
 
