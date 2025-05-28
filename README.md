@@ -274,6 +274,85 @@ Esto asegura que la Raspberry Pi reciba energía directamente desde la batería,
 
 > ⚠️ **Asegúrate de conectar correctamente los pines**, ya que una conexión invertida o incorrecta puede dañar la Raspberry Pi de forma irreversible.
 
+### 7. Ejecución automática al iniciar la Raspberry Pi
+
+Una de las funcionalidades que se pretendía implementar era que el script principal (`provaVol.py`) se ejecutara automáticamente en cuanto la Raspberry Pi se encendiera, sin necesidad de iniciar sesión ni ejecutar el código manualmente.
+
+#### Método 1
+
+Para ello, se utilizó el sistema de servicios de Linux (`systemd`). Se creó un archivo de servicio personalizado con el siguiente contenido:
+
+```ini
+[Unit]
+Description=Script de vuelo automático
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/git/DronLink/provaVol.py
+WorkingDirectory=/home/git/DronLink/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Este archivo se guardó en:
+
+```bash
+/etc/systemd/system/volar.service
+```
+
+Y se activó con los comandos:
+
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl enable volar.service
+sudo systemctl start volar.service
+```
+
+
+
+#### Método 2: `crontab` con @reboot
+
+Otra opción para ejecutar el script al inicio es usar `crontab`, una herramienta de programación de tareas. Para ello se añade una línea especial al crontab del usuario `pi`:
+
+1. Abre el editor de `crontab`:
+   ```bash
+   crontab -e
+   ```
+
+2. Añade esta línea al final del archivo:
+   ```bash
+   @reboot python3 /ruta/completa/a/provaVol.py
+   ```
+
+3. Guarda y cierra el archivo. El script debería ejecutarse al reiniciar la Raspberry Pi.
+
+
+
+#### Problemas encontrados
+
+A pesar de haber probado ambos métodos y seguir los pasos correctos, **el script no se ejecutaba correctamente al arrancar la Raspberry Pi**. Al igual que con los problemas de permisos del puerto serie (`/dev/serial0`), no se encontró una causa clara del fallo, y todos los intentos por solucionarlo resultaron infructuosos.
+
+#### Solución temporal aplicada
+
+Debido a estos fallos persistentes y a la falta de tiempo para depurar con precisión el origen del error, se optó por una solución práctica y funcional:
+
+1. Encender la Raspberry Pi.
+2. Con un teclado y ratón conectados, ejecutar manualmente el script (`provaVol.py`).
+3. Confirmar que el script está funcionando correctamente.
+4. Desconectar todos los periféricos (pantalla, teclado, ratón).
+5. Mantener la Raspberry Pi alimentada desde la batería del dron.
+6. Realizar el vuelo con el sistema operativo y el script ya en ejecución.
+
+Este procedimiento permite garantizar que el sistema esté operativo durante el vuelo sin depender de la ejecución automática en el arranque.
+
+> ⚠️ **Nota:** Este método es funcional pero no automatizado.
+
+
 ## Códigos utilizados
 
 Durante el desarrollo del proyecto se han creado distintos scripts en Python para realizar pruebas y funcionalidades específicas. A continuación, se describen brevemente:
@@ -282,7 +361,6 @@ Durante el desarrollo del proyecto se han creado distintos scripts en Python par
 
 Este script permite probar el funcionamiento de una cámara conectada al sistema, ya sea una webcam integrada o una conectada por USB. Se utiliza para capturar imágenes o visualizar en tiempo real desde la cámara mediante código.
 
----
 
 ### 2. `provaCam.py`
 
@@ -294,7 +372,6 @@ Al ejecutarse, este código:
 
 Es útil para validar el funcionamiento del módulo de cámara y automatizar la toma de imágenes.
 
----
 
 ### 3. `provaVol.py`
 
@@ -310,7 +387,6 @@ Este script:
 
 Permite sincronizar automáticamente la toma de imágenes con el inicio y fin de la misión.
 
----
 
 ### 4. `stitching.py`
 
