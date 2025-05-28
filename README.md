@@ -98,7 +98,7 @@ La Raspberry Pi puede conectarse a Internet por cable Ethernet, pero en este pro
 
 1. **Conexión Wi-Fi interna (cliente):** Esta es la tarjeta Wi-Fi integrada de la Raspberry Pi. Se usará para conectarse a una red Wi-Fi existente (en nuestro caso, `dronsEETAC`), lo que permitirá a la Raspberry Pi **tener acceso a Internet**, algo que no es necesario pero ayuda durante la configuración.
 
-2. **Conexión Wi-Fi externa (hotspot):** Para esta función, conectaremos un **adaptador Wi-Fi USB** a uno de los puertos disponibles. Este adaptador se configurará como un **punto de acceso (hotspot)**, de forma que otros dispositivos (como un portátil) puedan conectarse directamente a la Raspberry Pi a través de esta red. Esto será útil, por ejemplo, para **acceder por SSH** a la Raspberry Pi sin necesidad de conexión a internet externa mediante aplicaciones como Putty.
+2. **Conexión Wi-Fi externa (hotspot):** Para esta función, conectaremos un **adaptador Wi-Fi USB** a uno de los puertos disponibles. Este adaptador se configurará como un **punto de acceso (hotspot)**, de forma que otros dispositivos (como un portátil) puedan conectarse directamente a la Raspberry Pi a través de esta red. Esto será útil, por ejemplo, para **acceder por SSH** a la Raspberry Pi sin necesidad de conexión a internet externa mediante aplicaciones como PuTTY.
 
 #### Configuración de la conexión Wi-Fi interna
 
@@ -156,4 +156,31 @@ Para poder acceder a la Raspberry Pi desde un ordenador u otro dispositivo, prim
 <img src="https://github.com/user-attachments/assets/48a39e25-44fc-4762-86c7-d321646a5063" alt="SSH" width="500"/>
 
 4. Confirma y sal del menú. A partir de ahora la Raspberry Pi aceptará conexiones remotas vía SSH.
+
+#### Conexión desde otro dispositivo
+
+Ahora debemos conectarnos a la red Wi-Fi generada por la Raspberry Pi (MiHotSpot). Una vez conectados, podemos acceder por SSH desde nuestro ordenador.
+
+Para hacer esto utilizaremos PuTTY. Si no tienes PuTTY instalado, puedes descargarlo desde: https://putty.org/
+
+1. Abre PuTTY.
+2. En el campo Host Name (or IP address), escribe la dirección IP del hotspot de la Raspberry Pi (10.42.0.1). Asegúrate de que el puerto esté en 22 y que el protocolo seleccionado sea SSH. Haz clic en Open.
+
+<img src="https://github.com/user-attachments/assets/360a6f6f-ffe1-4a3e-ae1c-e2dd871232bd" alt="SSH" width="350"/>
+
+   En caso de no funcionar abre una terminal y escribe el comando `ipconfig`. Este te dira a que IP estas conectado
+
+3. Introduce el nombre de usuario y contraseña que creaste durante la configuración inicial.
+
+<img src="https://github.com/user-attachments/assets/5451b694-b124-4735-8d48-b7d2d9770106" alt="SSH" width="350"/>
+
+Una vez conectado mediante SSH a la Raspberry Pi, puedes ejecutar comandos directamente en ella desde tu ordenador, **sin necesidad de usar un monitor, teclado o ratón conectados físicamente** a la Raspberry
+
+#### Compartir archivos mediante SSH
+
+Otra herramienta útil es **WinSCP**, que permite **transferir archivos** entre tu ordenador y la Raspberry Pi utilizando el mismo acceso SSH. Es especialmente útil para **descargar las fotos o vídeos capturados durante el vuelo** o subir scripts directamente a la RPi. Puedes descargarlo desde: https://winscp.net/eng/download.php
+
+Para conectarte, simplemente introduce los mismos datos que en el PuTTY. Una vez conectado, verás una interfaz de doble panel para arrastrar y soltar archivos entre ambos dispositivos.
+
+<img src="https://github.com/user-attachments/assets/0faacd05-78e8-4f1c-814c-dbfd5828e06d" alt="SSH" width="350"/>
 
